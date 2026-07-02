@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 
-const CoinCard = ({ coin }) => {
+const CoinCard = ({ coin, isFavorited, onToggleFavorite }) => {
   return (
     <Link to={`/coin/${coin.id}`}>
       <div className='coin-card'>
@@ -10,6 +10,16 @@ const CoinCard = ({ coin }) => {
             <h2>{coin.name}</h2>
             <p className='symbol'>{coin.symbol.toUpperCase()}</p>
           </div>
+          <button
+            className='star-btn'
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggleFavorite(coin.id);
+            }}
+          >
+            {isFavorited ? '★' : '☆'}
+          </button>
         </div>
         <p>Price: ${coin.current_price.toLocaleString()}</p>
         <p
