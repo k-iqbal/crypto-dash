@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="#0e1117"/>
+
+  <!-- Coin ring -->
+  <circle cx="256" cy="195" r="130" fill="#161b22" stroke="#58a6ff" stroke-width="16"/>
+
+  <!-- Dollar sign inside coin -->
+  <text x="256" y="245"
+        text-anchor="middle"
+        fill="#58a6ff"
+        font-size="136"
+        font-family="Arial, Helvetica, sans-serif"
+        font-weight="700">$</text>
+
+  <!-- Chart baseline -->
+  <line x1="56" y1="420" x2="456" y2="420" stroke="#2d333b" stroke-width="3"/>
+
+  <!-- Rising chart line -->
+  <polyline
+    points="68,410 148,375 228,388 308,345 388,310 452,278"
+    fill="none"
+    stroke="#16a34a"
+    stroke-width="14"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+  <!-- Chart dots -->
+  <circle cx="148" cy="375" r="9" fill="#16a34a"/>
+  <circle cx="228" cy="388" r="9" fill="#16a34a"/>
+  <circle cx="308" cy="345" r="9" fill="#16a34a"/>
+  <circle cx="388" cy="310" r="9" fill="#16a34a"/>
+  <circle cx="452" cy="278" r="9" fill="#16a34a"/>
+</svg>
