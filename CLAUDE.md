@@ -49,3 +49,29 @@ src/
 ```
 
 Routes: `/` (home), `/about`, `/coin/:id` (detail), `*` (404).
+
+## PWA
+
+The app is a fully installable Progressive Web App via `vite-plugin-pwa` (devDependency).
+
+**How it works:**
+- `vite.config.js` configures `VitePWA` with `registerType: 'autoUpdate'` — the service worker registers and updates silently, no user prompt needed.
+- `npm run build` generates `dist/sw.js` (Workbox service worker) and `dist/manifest.webmanifest` automatically.
+- The manifest link is injected into `index.html` by the plugin at build time; no manual `<link rel="manifest">` tag is needed.
+
+**Caching strategy:**
+- App shell (all JS, CSS, HTML, images, fonts in `dist/`) → precached by Workbox at build time, available offline.
+- `api.coingecko.com` requests → `NetworkOnly` — live prices are never served from cache.
+
+**Icons (`public/`):**
+- Source: `icon.svg` (dark bg `#0e1117`, blue `#58a6ff` coin, green `#16a34a` chart line)
+- Generated with `npx @vite-pwa/assets-generator --preset minimal public/icon.svg`: `pwa-64x64.png`, `pwa-192x192.png`, `pwa-512x512.png`, `maskable-icon-512x512.png`, `apple-touch-icon-180x180.png`, `favicon.ico`
+- To regenerate icons after editing `icon.svg`, re-run the command above.
+
+**Testing PWA install locally:**
+```bash
+npm run build && npm run preview
+```
+Open `http://localhost:4173` in Chrome/Edge — install icon appears in the address bar. DevTools → Application → Service Workers / Manifest to inspect.
+
+**Deployed (Cloudflare):** HTTPS is provided automatically; push to `main` and visit the deployed URL to get the "Add to Home Screen" prompt on mobile or the install icon on desktop.
